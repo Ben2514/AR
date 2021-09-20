@@ -43,12 +43,20 @@
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     id="scene"
   >
+
+    <a-assets>
+      <a-asset-item id="trex" src="/AR/model/trex/trex.gltf"></a-asset-item>
+      <a-asset-item id="l7697-obj" src="/AR/model/l7697/l7697.obj"></a-asset-item>
+      <a-asset-item id="l7697-mtl" src="/AR/model/l7697/l7697.mtl"></a-asset-item>
+    </a-assets>
+
     <!-- a-nft is the anchor that defines an Image Tracking entity -->
     <!-- on 'url' use the path to the Image Descriptors created before. -->
     <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
     <a-nft
       type="nft"
-      url="/AR/nft/trex"
+      -url="/nft/trex/trex"
+      url="/AR/nft/l7697/l7697"
       smooth="true"
       smoothCount="10"
       smoothTolerance=".01"
@@ -57,11 +65,13 @@
       emitevents="true"
       id="nft"
     >
+
       <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        gltf-model="/AR/model/trex.gltf"
-        scale="5 5 5"
-        position="50 150 0"
+        -gltf-model="#trex"
+        obj-model="obj: #l7697-obj; mtl: #l7697-mtl"
+        scale="2 2 2"
+        position="150 150 0"
         class="clickable"
         gesture-handler
         id="model"
