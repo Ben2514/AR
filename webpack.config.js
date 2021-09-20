@@ -9,7 +9,7 @@ module.exports = {
   mode: mode,
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'doc'),
     publicPath: mode === 'production' ? '/AR' : '/',
     filename: 'js/[name].js',
     clean: true,
