@@ -16,8 +16,9 @@ https.createServer(credentials, app).listen(SSL_PORT, IP, function() {
   console.log(`https port:${SSL_PORT}`);
 })
 
-app.use(express.static(`${__dirname}/src`))
+// app.use(express.static(`${__dirname}/src`))
+app.use(express.static(`${__dirname}/dist`))
 
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/index.html`)
-})
+// app.get('/', (req, res) => {
+//   res.sendFile(`${__dirname}/index.html`)
+// })

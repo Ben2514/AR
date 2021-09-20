@@ -1,5 +1,6 @@
 // https://github.com/fcor/arjs-gestures/blob/master/dist/gestures.js
 /* global AFRAME, THREE */
+var a = 'ffff';
 
 AFRAME.registerComponent("gesture-handler", {
   schema: {
@@ -19,6 +20,11 @@ AFRAME.registerComponent("gesture-handler", {
 
     this.el.sceneEl.addEventListener("markerFound", (e) => {
       this.isVisible = true;
+      
+      // let rect = document.querySelector('body').getBoundingClientRect();
+      // let x = (rect.left + rect.right) / 2;
+      // let y = (rect.bottom + rect.top) / 2;
+      // this.el.object3D.position.set(x, y, 0);
     });
 
     this.el.sceneEl.addEventListener("markerLost", (e) => {
@@ -43,9 +49,9 @@ AFRAME.registerComponent("gesture-handler", {
 
   handleRotation: function (event) {
     if (this.isVisible) {
-      this.el.object3D.rotation.x +=
-        event.detail.positionChange.x * this.data.rotationFactor;
       this.el.object3D.rotation.y +=
+        event.detail.positionChange.x * this.data.rotationFactor;
+      this.el.object3D.rotation.x +=
         event.detail.positionChange.y * this.data.rotationFactor;
     }
   },
