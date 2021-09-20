@@ -19,6 +19,21 @@
   </div>
 
   <button type="button" class="btn btn-primary btn-lg" id="toggle" onclick="toggle(this)">圖片</button>
+  <div id="exam" style="display: none;">
+    <p id="question">這是甚麼龍？</p>
+    <form id="option">
+      <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+      <label class="btn btn-secondary" for="option1">1</label>
+
+      <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+      <label class="btn btn-secondary" for="option2">2</label>
+
+      <input type="radio" class="btn-check" name="options" id="option4" autocomplete="off">
+      <label class="btn btn-secondary" for="option4">3</label>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 
   <!-- a-frame scene -->
   <a-scene

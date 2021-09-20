@@ -24,3 +24,25 @@
   text-align: center;
   z-index: 1;
 }
+
+#exam {
+  /* display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-around;
+  align-items: stretch; */
+  margin-top: 30%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+#question {
+  background-color: white;
+}
+
+#option {
+  display: flex;
+  flex-direction: column;
+  margin: 3px;
+  text-align: center;
+}
