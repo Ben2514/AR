@@ -1,8 +1,8 @@
 <head>
-  <!-- import aframe and then ar.js with image tracking / location based features -->
-  <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
@@ -11,11 +11,7 @@
 </head>
 
 
-<body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
+<body style="margin: 0px; overflow: hidden;">
 
   <button type="button" class="btn btn-primary btn-lg" id="toggle" onclick="toggle(this)">圖片</button>
   <div id="exam" style="display: none;">
@@ -36,48 +32,37 @@
 
   <!-- a-frame scene -->
   <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
+    arjs
     embedded
+    renderer="logarithmicDepthBuffer: true;"
+    vr-mode-ui="enabled: false"
     gesture-detector
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     id="scene"
   >
-
     <a-assets>
-      <a-asset-item id="trex" src="/AR/model/trex/trex.gltf"></a-asset-item>
-      <a-asset-item id="l7697-obj" src="/AR/model/l7697/l7697.obj"></a-asset-item>
-      <a-asset-item id="l7697-mtl" src="/AR/model/l7697/l7697.mtl"></a-asset-item>
+      <a-asset-item id="trex" src="model/trex/trex.gltf"></a-asset-item>
+      <a-asset-item id="l7697-obj" src="model/l7697/l7697.obj"></a-asset-item>
+      <a-asset-item id="l7697-mtl" src="model/l7697/l7697.mtl"></a-asset-item>
     </a-assets>
-
-    <!-- a-nft is the anchor that defines an Image Tracking entity -->
-    <!-- on 'url' use the path to the Image Descriptors created before. -->
-    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
-    <a-nft
-      type="nft"
-      -url="/nft/trex/trex"
-      url="/AR/nft/l7697/l7697"
-      smooth="true"
-      smoothCount="10"
-      smoothTolerance=".01"
-      smoothThreshold="5"
+    <a-marker
+      preset="hiro"
       raycaster="objects: .clickable"
       emitevents="true"
-      id="nft"
+      cursor="fuse: false; rayOrigin: mouse;"
+      id="marker"
     >
-
-      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
         -gltf-model="#trex"
         obj-model="obj: #l7697-obj; mtl: #l7697-mtl"
-        scale="2 2 2"
-        position="150 150 0"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
         class="clickable"
         gesture-handler
         id="model"
       >
       </a-entity>
-    </a-nft>
+    </a-marker>
     <!-- static camera that moves according to the device movements -->
     <a-entity camera></a-entity>
   </a-scene>
