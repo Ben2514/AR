@@ -10,7 +10,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'docs'),
-    publicPath: mode === 'production' ? '/AR' : '/',
+    // publicPath: '/AR',
     filename: 'js/[name].js',
     clean: true,
   },
