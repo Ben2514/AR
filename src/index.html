@@ -32,7 +32,7 @@
 
   <!-- a-frame scene -->
   <a-scene
-    arjs
+    arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
     embedded
     renderer="logarithmicDepthBuffer: true;"
     vr-mode-ui="enabled: false"
@@ -40,21 +40,18 @@
     id="scene"
   >
     <a-assets>
-      <a-asset-item id="trex" src="model/trex/trex.gltf"></a-asset-item>
-      <a-asset-item id="l7697-obj" src="model/l7697/l7697.obj"></a-asset-item>
-      <a-asset-item id="l7697-mtl" src="model/l7697/l7697.mtl"></a-asset-item>
+      <a-asset-item id="obj" src="model/IOT-Q1.obj"></a-asset-item>
+      <a-asset-item id="mtl" src="model/IOT-Q1.mtl"></a-asset-item>
     </a-assets>
     <a-marker
-      preset="hiro"
-      raycaster="objects: .clickable"
+      type="pattern"
+      url="marker/pattern-marker1.patt"
       emitevents="true"
-      cursor="fuse: false; rayOrigin: mouse;"
       id="marker"
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        -gltf-model="#trex"
-        obj-model="obj: #l7697-obj; mtl: #l7697-mtl"
+        obj-model="obj: #obj; mtl: #mtl"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"

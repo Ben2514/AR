@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
-const mode = 'production';
+const mode = 'development';
 
 module.exports = {
   mode: mode,
@@ -34,7 +34,7 @@ module.exports = {
       patterns: [
         { from: './src/js', to: 'js' },
         { from: './src/model', to: 'model' },
-        { from: './src/nft', to: 'nft' },
+        { from: './src/marker', to: 'marker' },
       ],
     }),
   ],

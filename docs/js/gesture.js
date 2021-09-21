@@ -1,1 +1,241 @@
-var a="ffff";AFRAME.registerComponent("gesture-handler",{schema:{enabled:{default:!0},rotationFactor:{default:5},minScale:{default:.3},maxScale:{default:8}},init:function(){this.handleScale=this.handleScale.bind(this),this.handleRotation=this.handleRotation.bind(this),this.isVisible=!1,this.initialScale=this.el.object3D.scale.clone(),this.scaleFactor=1,this.el.sceneEl.addEventListener("markerFound",(t=>{this.isVisible=!0})),this.el.sceneEl.addEventListener("markerLost",(t=>{this.isVisible=!1}))},update:function(){this.data.enabled?(this.el.sceneEl.addEventListener("onefingermove",this.handleRotation),this.el.sceneEl.addEventListener("twofingermove",this.handleScale)):(this.el.sceneEl.removeEventListener("onefingermove",this.handleRotation),this.el.sceneEl.removeEventListener("twofingermove",this.handleScale))},remove:function(){this.el.sceneEl.removeEventListener("onefingermove",this.handleRotation),this.el.sceneEl.removeEventListener("twofingermove",this.handleScale)},handleRotation:function(t){this.isVisible&&(this.el.object3D.rotation.y+=t.detail.positionChange.x*this.data.rotationFactor,this.el.object3D.rotation.x+=t.detail.positionChange.y*this.data.rotationFactor)},handleScale:function(t){this.isVisible&&(this.scaleFactor*=1+t.detail.spreadChange/t.detail.startSpread,this.scaleFactor=Math.min(Math.max(this.scaleFactor,this.data.minScale),this.data.maxScale),this.el.object3D.scale.x=this.scaleFactor*this.initialScale.x,this.el.object3D.scale.y=this.scaleFactor*this.initialScale.y,this.el.object3D.scale.z=this.scaleFactor*this.initialScale.z)}}),AFRAME.registerComponent("gesture-detector",{schema:{element:{default:""}},init:function(){this.targetElement=this.data.element&&document.querySelector(this.data.element),this.targetElement||(this.targetElement=this.el),this.internalState={previousState:null},this.emitGestureEvent=this.emitGestureEvent.bind(this),this.targetElement.addEventListener("touchstart",this.emitGestureEvent),this.targetElement.addEventListener("touchend",this.emitGestureEvent),this.targetElement.addEventListener("touchmove",this.emitGestureEvent)},remove:function(){this.targetElement.removeEventListener("touchstart",this.emitGestureEvent),this.targetElement.removeEventListener("touchend",this.emitGestureEvent),this.targetElement.removeEventListener("touchmove",this.emitGestureEvent)},emitGestureEvent(t){const e=this.getTouchState(t),i=this.internalState.previousState,n=i&&e&&e.touchCount==i.touchCount,s=e&&!n;if(i&&!n){const t=this.getEventPrefix(i.touchCount)+"fingerend";this.el.emit(t,i),this.internalState.previousState=null}if(s){e.startTime=performance.now(),e.startPosition=e.position,e.startSpread=e.spread;const t=this.getEventPrefix(e.touchCount)+"fingerstart";this.el.emit(t,e),this.internalState.previousState=e}if(n){const t={positionChange:{x:e.position.x-i.position.x,y:e.position.y-i.position.y}};e.spread&&(t.spreadChange=e.spread-i.spread),Object.assign(i,e),Object.assign(t,i);const n=this.getEventPrefix(e.touchCount)+"fingermove";this.el.emit(n,t)}},getTouchState:function(t){if(0===t.touches.length)return null;const e=[];for(let i=0;i<t.touches.length;i++)e.push(t.touches[i]);const i={touchCount:e.length},n=e.reduce(((t,e)=>t+e.clientX),0)/e.length,s=e.reduce(((t,e)=>t+e.clientY),0)/e.length;i.positionRaw={x:n,y:s};const a=2/(window.innerWidth+window.innerHeight);if(i.position={x:n*a,y:s*a},e.length>=2){const t=e.reduce(((t,e)=>t+Math.sqrt(Math.pow(n-e.clientX,2)+Math.pow(s-e.clientY,2))),0)/e.length;i.spread=t*a}return i},getEventPrefix:t=>["one","two","three","many"][Math.min(t,4)-1]});
+// https://github.com/fcor/arjs-gestures/blob/master/dist/gestures.js
+/* global AFRAME, THREE */
+var a = 'ffff';
+
+AFRAME.registerComponent("gesture-handler", {
+  schema: {
+    enabled: { default: true },
+    rotationFactor: { default: 5 },
+    minScale: { default: 0.3 },
+    maxScale: { default: 8 },
+  },
+
+  init: function () {
+    this.handleScale = this.handleScale.bind(this);
+    this.handleRotation = this.handleRotation.bind(this);
+
+    this.isVisible = false;
+    this.initialScale = this.el.object3D.scale.clone();
+    this.scaleFactor = 1;
+
+    this.el.sceneEl.addEventListener("markerFound", (e) => {
+      this.isVisible = true;
+      
+      // let rect = document.querySelector('body').getBoundingClientRect();
+      // let x = (rect.left + rect.right) / 2;
+      // let y = (rect.bottom + rect.top) / 2;
+      // this.el.object3D.position.set(x, y, 0);
+    });
+
+    this.el.sceneEl.addEventListener("markerLost", (e) => {
+      this.isVisible = false;
+    });
+  },
+
+  update: function () {
+    if (this.data.enabled) {
+      this.el.sceneEl.addEventListener("onefingermove", this.handleRotation);
+      this.el.sceneEl.addEventListener("twofingermove", this.handleScale);
+    } else {
+      this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+      this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+    }
+  },
+
+  remove: function () {
+    this.el.sceneEl.removeEventListener("onefingermove", this.handleRotation);
+    this.el.sceneEl.removeEventListener("twofingermove", this.handleScale);
+  },
+
+  handleRotation: function (event) {
+    if (this.isVisible) {
+      this.el.object3D.rotation.y +=
+        event.detail.positionChange.x * this.data.rotationFactor;
+      this.el.object3D.rotation.x +=
+        event.detail.positionChange.y * this.data.rotationFactor;
+    }
+  },
+
+  handleScale: function (event) {
+    if (this.isVisible) {
+      this.scaleFactor *=
+        1 + event.detail.spreadChange / event.detail.startSpread;
+
+      this.scaleFactor = Math.min(
+        Math.max(this.scaleFactor, this.data.minScale),
+        this.data.maxScale
+      );
+
+      this.el.object3D.scale.x = this.scaleFactor * this.initialScale.x;
+      this.el.object3D.scale.y = this.scaleFactor * this.initialScale.y;
+      this.el.object3D.scale.z = this.scaleFactor * this.initialScale.z;
+    }
+  },
+});
+
+// Component that detects and emits events for touch gestures
+
+AFRAME.registerComponent("gesture-detector", {
+  schema: {
+    element: { default: "" }
+  },
+
+  init: function() {
+    this.targetElement =
+      this.data.element && document.querySelector(this.data.element);
+
+    if (!this.targetElement) {
+      this.targetElement = this.el;
+    }
+
+    this.internalState = {
+      previousState: null
+    };
+
+    this.emitGestureEvent = this.emitGestureEvent.bind(this);
+
+    this.targetElement.addEventListener("touchstart", this.emitGestureEvent);
+
+    this.targetElement.addEventListener("touchend", this.emitGestureEvent);
+
+    this.targetElement.addEventListener("touchmove", this.emitGestureEvent);
+  },
+
+  remove: function() {
+    this.targetElement.removeEventListener("touchstart", this.emitGestureEvent);
+
+    this.targetElement.removeEventListener("touchend", this.emitGestureEvent);
+
+    this.targetElement.removeEventListener("touchmove", this.emitGestureEvent);
+  },
+
+  emitGestureEvent(event) {
+    const currentState = this.getTouchState(event);
+
+    const previousState = this.internalState.previousState;
+
+    const gestureContinues =
+      previousState &&
+      currentState &&
+      currentState.touchCount == previousState.touchCount;
+
+    const gestureEnded = previousState && !gestureContinues;
+
+    const gestureStarted = currentState && !gestureContinues;
+
+    if (gestureEnded) {
+      const eventName =
+        this.getEventPrefix(previousState.touchCount) + "fingerend";
+
+      this.el.emit(eventName, previousState);
+
+      this.internalState.previousState = null;
+    }
+
+    if (gestureStarted) {
+      currentState.startTime = performance.now();
+
+      currentState.startPosition = currentState.position;
+
+      currentState.startSpread = currentState.spread;
+
+      const eventName =
+        this.getEventPrefix(currentState.touchCount) + "fingerstart";
+
+      this.el.emit(eventName, currentState);
+
+      this.internalState.previousState = currentState;
+    }
+
+    if (gestureContinues) {
+      const eventDetail = {
+        positionChange: {
+          x: currentState.position.x - previousState.position.x,
+
+          y: currentState.position.y - previousState.position.y
+        }
+      };
+
+      if (currentState.spread) {
+        eventDetail.spreadChange = currentState.spread - previousState.spread;
+      }
+
+      // Update state with new data
+
+      Object.assign(previousState, currentState);
+
+      // Add state data to event detail
+
+      Object.assign(eventDetail, previousState);
+
+      const eventName =
+        this.getEventPrefix(currentState.touchCount) + "fingermove";
+
+      this.el.emit(eventName, eventDetail);
+    }
+  },
+
+  getTouchState: function(event) {
+    if (event.touches.length === 0) {
+      return null;
+    }
+
+    // Convert event.touches to an array so we can use reduce
+
+    const touchList = [];
+
+    for (let i = 0; i < event.touches.length; i++) {
+      touchList.push(event.touches[i]);
+    }
+
+    const touchState = {
+      touchCount: touchList.length
+    };
+
+    // Calculate center of all current touches
+
+    const centerPositionRawX =
+      touchList.reduce((sum, touch) => sum + touch.clientX, 0) /
+      touchList.length;
+
+    const centerPositionRawY =
+      touchList.reduce((sum, touch) => sum + touch.clientY, 0) /
+      touchList.length;
+
+    touchState.positionRaw = { x: centerPositionRawX, y: centerPositionRawY };
+
+    // Scale touch position and spread by average of window dimensions
+
+    const screenScale = 2 / (window.innerWidth + window.innerHeight);
+
+    touchState.position = {
+      x: centerPositionRawX * screenScale,
+      y: centerPositionRawY * screenScale
+    };
+
+    // Calculate average spread of touches from the center point
+
+    if (touchList.length >= 2) {
+      const spread =
+        touchList.reduce((sum, touch) => {
+          return (
+            sum +
+            Math.sqrt(
+              Math.pow(centerPositionRawX - touch.clientX, 2) +
+                Math.pow(centerPositionRawY - touch.clientY, 2)
+            )
+          );
+        }, 0) / touchList.length;
+
+      touchState.spread = spread * screenScale;
+    }
+
+    return touchState;
+  },
+
+  getEventPrefix(touchCount) {
+    const numberNames = ["one", "two", "three", "many"];
+
+    return numberNames[Math.min(touchCount, 4) - 1];
+  }
+});
