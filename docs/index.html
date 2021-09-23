@@ -32,7 +32,7 @@
 
   <!-- a-frame scene -->
   <a-scene
-    arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;'
+    arjs
     embedded
     renderer="logarithmicDepthBuffer: true;"
     vr-mode-ui="enabled: false"
@@ -40,9 +40,34 @@
     id="scene"
   >
     <a-assets>
-      <a-asset-item id="obj" src="model/IOT-Q1.obj"></a-asset-item>
-      <a-asset-item id="mtl" src="model/IOT-Q1.mtl"></a-asset-item>
+      <a-asset-item id="obj1" src="model/IOT-Q1.obj"></a-asset-item>
+      <a-asset-item id="mtl1" src="model/IOT-Q1.mtl"></a-asset-item>
+      <a-asset-item id="obj2" src="model/IOT-Q2.obj"></a-asset-item>
+      <a-asset-item id="mtl2" src="model/IOT-Q2.mtl"></a-asset-item>
+      <a-asset-item id="obj3" src="model/IOT-Q3.obj"></a-asset-item>
+      <a-asset-item id="mtl3" src="model/IOT-Q3.mtl"></a-asset-item>
+      <a-asset-item id="obj4" src="model/IOT-Q4.obj"></a-asset-item>
+      <a-asset-item id="mtl4" src="model/IOT-Q4.mtl"></a-asset-item>
+      <a-asset-item id="obj5" src="model/IOT-Q5.obj"></a-asset-item>
+      <a-asset-item id="mtl5" src="model/IOT-Q5.mtl"></a-asset-item>
     </a-assets>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker1.patt"
+      emitevents="true"
+      id="marker"
+    >
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
+      <a-entity
+        obj-model="obj: #obj1; mtl: #mtl1"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+        id="model"
+      >
+      </a-entity>
+    </a-marker>
     <a-marker
       type="pattern"
       url="marker/pattern-marker2.patt"
@@ -51,7 +76,58 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj; mtl: #mtl"
+        obj-model="obj: #obj2; mtl: #mtl2"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+        id="model"
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker3.patt"
+      emitevents="true"
+      id="marker"
+    >
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
+      <a-entity
+        obj-model="obj: #obj3; mtl: #mtl3"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+        id="model"
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker4.patt"
+      emitevents="true"
+      id="marker"
+    >
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
+      <a-entity
+        obj-model="obj: #obj4; mtl: #mtl4"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+        id="model"
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker5.patt"
+      emitevents="true"
+      id="marker"
+    >
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
+      <a-entity
+        obj-model="obj: #obj5; mtl: #mtl5"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"

@@ -190,7 +190,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:\Users\jyunrong.lee\Google 雲端硬碟\JYROcloud-同步傳檔用資料夾\小安案\[樹梅派7697]\[blender]\[7697題目]\Linkit7697 降面\2021mapping.png
+map_Kd 2021mapping.png
 
 newmtl Paint_Textured_Green_#4.002
 Ns 94.117647
@@ -201,7 +201,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:\Users\jyunrong.lee\Google 雲端硬碟\JYROcloud-同步傳檔用資料夾\小安案\[樹梅派7697]\[blender]\[7697題目]\Linkit7697 降面\0717smallmap.psd.png
+map_Kd 0717smallmap.psd.png
 
 newmtl cpu_cover:color:128:128:128.001
 Ns 94.117647
@@ -212,7 +212,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd C:\Users\jyunrong.lee\Google 雲端硬碟\JYROcloud-同步傳檔用資料夾\小安案\[樹梅派7697]\[blender]\[7697題目]\Linkit7697 降面\cpu cover.png
+map_Kd cpu cover.png
 
 newmtl thsp_wire:ptc-painted-red:255:0:0
 Ns 96.078431

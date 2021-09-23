@@ -190,7 +190,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd GB_mapping.png
+map_Kd 2021mapping.png
 
 newmtl Paint_Textured_Green_#4.002
 Ns 94.117647
