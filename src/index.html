@@ -40,7 +40,13 @@
     id="scene"
   >
     <a-assets>
-      <a-asset-item id="obj1" src="model/IOT-Q1.obj"></a-asset-item>
+      <!-- glb/gltf could be converted from mtl+obj file by obj2gltf or 3D Viewer (Windows) -->
+      <a-asset-item id="gltf1" src="model/IOT-Q1.gltf"></a-asset-item>
+      <a-asset-item id="gltf2" src="model/IOT-Q2.gltf"></a-asset-item>
+      <a-asset-item id="gltf3" src="model/IOT-Q3.gltf"></a-asset-item>
+      <a-asset-item id="gltf4" src="model/IOT-Q4.gltf"></a-asset-item>
+      <a-asset-item id="gltf5" src="model/IOT-Q5.gltf"></a-asset-item>
+      <!-- <a-asset-item id="obj1" src="model/IOT-Q1.obj"></a-asset-item>
       <a-asset-item id="mtl1" src="model/IOT-Q1.mtl"></a-asset-item>
       <a-asset-item id="obj2" src="model/IOT-Q2.obj"></a-asset-item>
       <a-asset-item id="mtl2" src="model/IOT-Q2.mtl"></a-asset-item>
@@ -49,8 +55,9 @@
       <a-asset-item id="obj4" src="model/IOT-Q4.obj"></a-asset-item>
       <a-asset-item id="mtl4" src="model/IOT-Q4.mtl"></a-asset-item>
       <a-asset-item id="obj5" src="model/IOT-Q5.obj"></a-asset-item>
-      <a-asset-item id="mtl5" src="model/IOT-Q5.mtl"></a-asset-item>
+      <a-asset-item id="mtl5" src="model/IOT-Q5.mtl"></a-asset-item> -->
     </a-assets>
+    <!-- generate .patt by https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
     <a-marker
       type="pattern"
       url="marker/pattern-marker1.patt"
@@ -59,7 +66,7 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj1; mtl: #mtl1"
+        gltf-model="#gltf1"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"
@@ -76,7 +83,7 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj2; mtl: #mtl2"
+        gltf-model="#gltf2"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"
@@ -93,7 +100,7 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj3; mtl: #mtl3"
+        gltf-model="#gltf3"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"
@@ -110,7 +117,7 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj4; mtl: #mtl4"
+        gltf-model="#gltf4"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"
@@ -127,7 +134,7 @@
     >
       <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        obj-model="obj: #obj5; mtl: #mtl5"
+        gltf-model="#gltf5"
         scale="0.02 0.02 0.02"
         position="0 0 0"
         class="clickable"
