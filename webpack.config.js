@@ -33,6 +33,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: './src/js', to: 'js' },
+        { from: './src/vendor', to: 'vendor' },
         { from: './src/model', to: 'model' },
         { from: './src/marker', to: 'marker' },
       ],

@@ -1,29 +1,66 @@
+.buttons {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
 #toggle {
   position: relative;
-  top: 20px;
-  width: 100%;
+  top: 2.5rem;
+  right: 7rem;
+  width: 5rem;
   text-align: center;
   z-index: 1;
 }
 
-#exam {
-  /* display: flex;
+.exam {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;  
+  opacity: 80%;
+}
+.exam.active {
+  display: flex;
   flex-direction: column;
-  align-content: space-around;
-  justify-content: space-around;
-  align-items: stretch; */
-  margin-top: 30%;
-  margin-bottom: 5%;
-  text-align: center;
+  align-items: stretch;
 }
 
-#question {
+.question {
+  position: relative;
+  margin: 5%;
+  padding: 0.3rem;
   background-color: white;
 }
 
-#option {
+.answer {
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin: 3px;
-  text-align: center;
+  /* justify-content: space-around; */
+  /* height: 15rem; */
+  margin: 5%;
+}
+
+.option {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  margin-bottom: 3%;
+  font-size: medium;
+  text-align: left;
+}
+.option > i {
+  padding-right: 1.5rem;
+}
+
+#commit {
+  width: 7rem;
+  height: 3rem;
+  align-self: flex-end;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
