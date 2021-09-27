@@ -1,6 +1,28 @@
-.buttons {
+.row {
+  opacity: 70%;
+}
+
+.arjs-loader {
+  height: 100%;
+  width: 100%;
   position: absolute;
+  top: 0;
   left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arjs-loader div {
+  text-align: center;
+  font-size: 1.25em;
+  color: white;
+}
+
+.upper {
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: left;
@@ -13,15 +35,14 @@
   right: 7rem;
   width: 5rem;
   text-align: center;
-  z-index: 1;
 }
 
 .exam {
+  display: none;
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 6%;
   width: 100%;  
-  opacity: 80%;
 }
 .exam.active {
   display: flex;
@@ -49,7 +70,7 @@
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: 0%;
-  margin-bottom: 3%;
+  margin-bottom: 3.5%;
   font-size: medium;
   text-align: left;
 }
@@ -57,10 +78,21 @@
   padding-right: 1.5rem;
 }
 
+.lower {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 2% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 #commit {
-  width: 7rem;
-  height: 3rem;
+  width: 6rem;
+  height: 2.5rem;
   align-self: flex-end;
-  font-size: 16px;
+  font-size: 1.2rem;
   letter-spacing: 2px;
 }

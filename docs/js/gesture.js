@@ -1,6 +1,5 @@
 // https://github.com/fcor/arjs-gestures/blob/master/dist/gestures.js
 /* global AFRAME, THREE */
-var a = 'ffff';
 
 AFRAME.registerComponent("gesture-handler", {
   schema: {

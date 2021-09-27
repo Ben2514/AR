@@ -3,25 +3,23 @@
   <!-- we import arjs version without NFT but with marker + location based support -->
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
+  <!-- Fontawesome -->
   <link href="vendor/fontawesome-free-5.15.4-web/css/all.min.css" rel="stylesheet">
 
   <script src="js/gesture.js"></script>
-  <script src="js/util.js"></script>
+  <script src="js/main.js"></script>
 </head>
 
 
 <body style="margin: 0px; overflow: hidden;">
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
 
   <div class="container">
-    <div class="row">
-      <div class="col-12 buttons" style="top: 0;; left: 10rem; height: 5rem">
-        <button type="button" class="btn btn-danger btn-lg" id="toggle" onclick="toggle(this)">圖片</button>
-      </div>
-    </div>
-
     <!-- a-frame scene -->
     <a-scene
       arjs
@@ -54,7 +52,7 @@
         type="pattern"
         url="marker/pattern-marker1.patt"
         emitevents="true"
-        id="marker"
+        id="marker1"
       >
         <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
         <a-entity
@@ -64,7 +62,6 @@
           position="0 0 0"
           class="clickable"
           gesture-handler
-          id="model"
         >
         </a-entity>
       </a-marker>
@@ -72,7 +69,7 @@
         type="pattern"
         url="marker/pattern-marker2.patt"
         emitevents="true"
-        id="marker"
+        id="marker2"
       >
         <a-entity
           gltf-model="#gltf2"
@@ -81,7 +78,6 @@
           position="0 0 0"
           class="clickable"
           gesture-handler
-          id="model"
         >
         </a-entity>
       </a-marker>
@@ -89,7 +85,7 @@
         type="pattern"
         url="marker/pattern-marker3.patt"
         emitevents="true"
-        id="marker"
+        id="marker3"
       >
         <a-entity
           gltf-model="#gltf3"
@@ -98,7 +94,6 @@
           position="0 0 0"
           class="clickable"
           gesture-handler
-          id="model"
         >
         </a-entity>
       </a-marker>
@@ -106,7 +101,7 @@
         type="pattern"
         url="marker/pattern-marker4.patt"
         emitevents="true"
-        id="marker"
+        id="marker4"
       >
         <a-entity
           gltf-model="#gltf4"
@@ -115,7 +110,6 @@
           position="0 0 0"
           class="clickable"
           gesture-handler
-          id="model"
         >
         </a-entity>
       </a-marker>
@@ -123,7 +117,7 @@
         type="pattern"
         url="marker/pattern-marker5.patt"
         emitevents="true"
-        id="marker"
+        id="marker5"
       >
         <a-entity
           gltf-model="#gltf5"
@@ -132,54 +126,199 @@
           position="0 0 0"
           class="clickable"
           gesture-handler
-          id="model"
         >
         </a-entity>
       </a-marker>
       <!-- static camera that moves according to the device movements -->
       <a-entity camera></a-entity>
     </a-scene>
+    
+    <div class="row">
+      <div class="col-12 upper" style="top: 0; left: 10rem; height: 5rem;">
+        <button type="button" class="btn btn-danger btn-lg" id="toggle" onclick="toggle(this)" style="display: none;">圖片</button>
+      </div>
+    </div>
 
     <div class="row">
-      <div class="col-12 exam active" style="display: none;">
+      <div class="col-12 exam" id="exam1">
         <div class="question">
           <h5>1.	下列哪些 pin 為 3.3v？</h5>
           <small style="color: red;">※此題是複選題</small>
         </div>
         
-        <form class="answer" role="group" aria-label="Basic checkbox toggle button group">
-          <input type="checkbox" class="btn-check" name="options" id="option1" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option1">
-            <i class="far fa-square"></i>1
+        <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>A
           </label>
 
-          <input type="checkbox" class="btn-check" name="options" id="option2" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option2">
-            <i class="far fa-square"></i>2
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>B
           </label>
 
-          <input type="checkbox" class="btn-check" name="options" id="option3" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option3">
-            <i class="far fa-square"></i>3
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>C
           </label>
 
-          <input type="checkbox" class="btn-check" name="options" id="option4" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option4">
-            <i class="far fa-square"></i>4
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>D
           </label>
 
-          <input type="checkbox" class="btn-check" name="options" id="option5" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option5">
-            <i class="far fa-square"></i>5
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>E
           </label>
 
-          <input type="checkbox" class="btn-check" name="options" id="option6" autocomplete="off">
-          <label class="btn btn-secondary btn-sm option" for="option6">
-            <i class="far fa-square"></i>6
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>F
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 exam" id="exam2">
+        <div class="question">
+          <h5>2.	下列哪些 pin 為 RST？</h5>
+          <small style="color: red;"></small>
+        </div>
+        
+        <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>A
           </label>
 
-          <input class="btn-success" id="commit" type="submit" value="下一題">
-        </form>
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>B
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>C
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>D
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>E
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>F
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 exam" id="exam3">
+        <div class="question">
+          <h5>3.	下列哪些 pin 為 GND？</h5>
+          <small style="color: red;">※此題是複選題</small>
+        </div>
+        
+        <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>A
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>B
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>C
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>D
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>E
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>F
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 exam" id="exam4">
+        <div class="question">
+          <h5>4.	下列哪些插槽為 digital 使用？</h5>
+          <small style="color: red;"></small>
+        </div>
+        
+        <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>A
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>B
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>C
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>D
+          </label>
+        </div>
+      </div>
+
+      <div class="col-12 exam" id="exam5">
+        <div class="question">
+          <h5>5.	下列哪些插槽為 I2C 使用？</h5>
+          <small style="color: red;"></small>
+        </div>
+        
+        <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>A
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>B
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>C
+          </label>
+
+          <label class="btn btn-secondary btn-sm option">
+            <input type="checkbox" class="btn-check" name="options" autocomplete="off">
+            <i class="far fa-square"></i>D
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 lower">
+        <input class="btn btn-light" id="commit" type="submit" value="未完成" onclick="alert(JSON.stringify(record))" style="display: none;" disabled>
       </div>
     </div>
 

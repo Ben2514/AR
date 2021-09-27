@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'docs'),
     // publicPath: '/AR',
-    filename: 'js/[name].js',
+    filename: 'js/index.js',
     clean: true,
   },
   module: {
@@ -32,10 +32,10 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: './src/js', to: 'js' },
-        { from: './src/vendor', to: 'vendor' },
-        { from: './src/model', to: 'model' },
-        { from: './src/marker', to: 'marker' },
+        {from: './src/js', to: 'js'},
+        {from: './src/vendor', to: 'vendor'},
+        {from: './src/model', to: 'model'},
+        {from: './src/marker', to: 'marker'},
       ],
     }),
   ],
