@@ -1,4 +1,3 @@
-let numQ = 5;
 let currentQ = 0;
 let record = (function() {
   let r = [];

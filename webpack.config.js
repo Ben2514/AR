@@ -27,8 +27,12 @@ module.exports = {
       filename: 'css/[name].css',
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+      template: './src/iot.html',
+      filename: 'iot.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/bio.html',
+      filename: 'bio.html',
     }),
     new CopyPlugin({
       patterns: [
