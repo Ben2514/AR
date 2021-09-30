@@ -117,7 +117,7 @@
     
     <div class="row">
       <div class="col-12 upper" style="top: 0; left: 10rem; height: 5rem;">
-        <button type="button" class="btn btn-danger btn-lg" id="toggle" onclick="toggle(this)" style="display: none;">圖片</button>
+        <button type="button" class="btn btn-danger btn-lg" id="toggle" style="display: none;">圖片</button>
       </div>
     </div>
 
@@ -250,10 +250,37 @@
       </div>
     </div>
 
-
+    <div class="modal fade" id="starter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" style="z-index: 10000;">
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content needs-validation" id="starter-form" novalidate>
+          <div class="modal-header">
+            <h5 class="modal-title">請填入姓名及學號</h5>
+          </div>
+          <div class="modal-body">
+            <div>
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="studentName" placeholder="Name" autocomplete="off" required>
+                <label for="studentName">姓名</label>
+                <div class="invalid-feedback">
+                  請輸入姓名！
+                </div>
+              </div>
+              <div class="form-floating">
+                <input type="text" class="form-control" id="studentID" placeholder="ID" autocomplete="off" required>
+                <label for="studentID">學號</label>
+                <div class="invalid-feedback">
+                  請輸入學號！
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">確認</button>
+          </div>
+        </form>
       </div>
     </div>
+
   </div>
-  
 
 </body>
