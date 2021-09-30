@@ -45,10 +45,10 @@ window.addEventListener("load", function() {
           record[currentQ - 1].splice(index, 1);
         }
 
-        let finished = record.reduce((acc, cur) => acc && cur.length);
+        let finished = record.reduce((acc, cur) => acc && cur.length, record[0].length);
         let commit = document.querySelector("#commit");
         commit.disabled = !finished;
-        commit.value = finished ? "提交" : "未完成";
+        commit.innerHTML = finished ? "提交" : "未完成";
         commit.className = finished ? "btn btn-success" : "btn btn-light";
       }
 
@@ -84,6 +84,8 @@ window.sw = function (next) {
   now.classList.add("active");
   if (document.querySelector("#toggle").innerHTML !== "題目")
     now.style.display = "none";
+  else
+    now.style.display = "";
 
   currentQ = next;
 }
