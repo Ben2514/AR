@@ -81,7 +81,7 @@
       </a-marker>
       <a-marker
         type="pattern"
-        url="marker/pattern-biomarker3.patt"
+        url="marker/pattern-biomarker3_.patt"
         emitevents="true"
         id="marker3"
       >
@@ -123,6 +123,7 @@
 
     <div class="row">
       <div class="col-12 exam" id="exam1">
+        <input type="hidden" name="answer" value="1, 3, 4">
         <div class="question">
           <h5>1.	在細胞進有絲分裂時，何者會形成紡錘體(SPINDLE APPARATUS)結構，促進細胞分裂時結構穩定？</h5>
           <small style="color: red;">※此題是複選題</small>
@@ -152,6 +153,7 @@
       </div>
 
       <div class="col-12 exam" id="exam2">
+        <input type="hidden" name="answer" value="5">
         <div class="question">
           <h5>2.	圖中何者參與細胞分裂過程，但在高等植物細胞中缺乏此構造？</h5>
           <small style="color: red;"></small>
@@ -186,6 +188,7 @@
       </div>
 
       <div class="col-12 exam" id="exam3">
+        <input type="hidden" name="answer" value="3">
         <div class="question">
           <h5>3.	染色體互換（Chromosomal crossover）是指兩條染色體在進行配對時，部分的DNA發生交換。這過程發生在減數分裂哪一時期？</h5>
           <small style="color: red;"></small>
@@ -215,6 +218,7 @@
       </div>
 
       <div class="col-12 exam" id="exam4">
+        <input type="hidden" name="answer" value="2">
         <div class="question">
           <h5>4.	在細胞進有絲分裂時，何者會形成紡錘體(SPINDLE APPARATUS)結構，促進細胞分裂時結構穩定？</h5>
           <small style="color: red;"></small>
@@ -246,7 +250,8 @@
 
     <div class="row">
       <div class="col-12 lower">
-        <button type="button" class="btn btn-light" id="commit" type="submit" onclick="alert(JSON.stringify(record))" style="display: none;" disabled>未完成</button>
+        <button type="button" class="btn btn-light" id="commit" type="submit" onclick="alert(JSON.stringify(record) + JSON.stringify({name: studentName, ID: studentID}))
+        " style="display: none;" disabled>未完成</button>
       </div>
     </div>
 
