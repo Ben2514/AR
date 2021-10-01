@@ -136,3 +136,55 @@ window.addEventListener("camera-init", () => {
     }
   });
 })();
+
+(function () {
+  "use strict"
+
+  let commit = document.querySelector("#commit");
+  commit.addEventListener("click", function (event) {
+    let finisher = new bootstrap.Modal(document.querySelector("#finisher"));
+    let result = document.querySelector("#result");
+
+    document.querySelector("#finisher_name").innerHTML = studentName;
+    document.querySelector("#finisher_id").innerHTML = studentID;
+
+    for (let i = 0; i < numQ; i++)
+      result.innerHTML += tr(i);
+
+    finisher.show();
+  });
+
+  function tr (index) {
+    let answer = record[index];
+    let correctStr = document.querySelector(`#exam${index + 1} > input[name=answer]`).value;
+    let correct = correctStr.split(',').map((element) => parseInt(element));
+
+    let left = `<td>
+      ${arrayEqual(answer, correct) ? '<i class="fas fa-check" style="width: 1.5rem; color: green"></i>' : 
+        '<i class="fas fa-times" style="width: 1.5rem; color: red"></i>'} ${index + 1}
+      </td>`;
+    let right = (function () {
+      let all = Array.from(new Set([...answer, ...correct])).sort();
+      let html = '';
+
+      all.forEach((element, index) => {
+        if (answer.includes(element) && correct.includes(element))
+          html += `<span style="color: green;">${String.fromCharCode(65 + element - 1)}</span>`;
+        else if (answer.includes(element))
+          html += `<span style="color: red; text-decoration:line-through;">${String.fromCharCode(65 + element - 1)}</span>`;
+        else
+          html += `<span style="color: red;">${String.fromCharCode(65 + element - 1)}</span>`;
+
+        if (index < all.length - 1)
+          html += "、";
+      });
+      return `<td style="font-weight: bolder;">${html}</td>`;
+    })();
+
+    return left + right;
+
+    function arrayEqual(a, b) {
+      return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val, index) => val === b[index]);
+    }
+  }
+})();
