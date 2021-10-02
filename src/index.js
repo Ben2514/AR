@@ -141,7 +141,9 @@ window.addEventListener("camera-init", () => {
   "use strict"
 
   let commit = document.querySelector("#commit");
-  commit.addEventListener("click", function (event) {
+  commit.addEventListener("click", function () {
+    if (commit.disabled) return;
+    
     let finisher = new bootstrap.Modal(document.querySelector("#finisher"));
     let result = document.querySelector("#result");
 
