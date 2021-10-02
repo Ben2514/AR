@@ -119,18 +119,20 @@ window.addEventListener("camera-init", () => {
 
   let toggle = document.querySelector("#toggle");
   toggle.addEventListener("click", function (event) {
-    let scene = document.querySelector("#scene");
+    let scene = document.querySelector("a-scene");
     let exam = document.querySelector(".exam.active");
 
     if (event.target.innerHTML === "題目") {
       event.target.innerHTML = "圖片";
       scene.object3D.visible = true;
+      scene.style.zIndex = 0;
       if (exam)
         exam.style.display = "none";
     }
     else {
       event.target.innerHTML = "題目";
       scene.object3D.visible = false;
+      scene.style.zIndex = -1;
       if (exam)
         exam.style.display = "";
     }
@@ -143,7 +145,7 @@ window.addEventListener("camera-init", () => {
   let commit = document.querySelector("#commit");
   commit.addEventListener("click", function () {
     if (commit.disabled) return;
-    
+
     let finisher = new bootstrap.Modal(document.querySelector("#finisher"));
     let result = document.querySelector("#result");
 

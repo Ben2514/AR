@@ -20,127 +20,14 @@
     <div>Loading, please wait...</div>
   </div>
 
-  <div class="container">
-    <!-- a-frame scene -->
-    <a-scene
-      arjs
-      embedded
-      renderer="logarithmicDepthBuffer: true;"
-      vr-mode-ui="enabled: false"
-      gesture-detector
-      id="scene"
-    >
-      <a-assets>
-        <!-- glb/gltf could be converted from mtl+obj file by obj2gltf or 3D Viewer (Windows) -->
-        <a-asset-item id="gltf1" src="model/iotQ1.gltf"></a-asset-item>
-        <a-asset-item id="gltf2" src="model/iotQ2.gltf"></a-asset-item>
-        <a-asset-item id="gltf3" src="model/iotQ3.gltf"></a-asset-item>
-        <a-asset-item id="gltf4" src="model/iotQ4.gltf"></a-asset-item>
-        <a-asset-item id="gltf5" src="model/iotQ5.gltf"></a-asset-item>
-        <!-- <a-asset-item id="obj1" src="model/iotQ1.obj"></a-asset-item>
-        <a-asset-item id="mtl1" src="model/iotQ1.mtl"></a-asset-item>
-        <a-asset-item id="obj2" src="model/iotQ2.obj"></a-asset-item>
-        <a-asset-item id="mtl2" src="model/iotQ2.mtl"></a-asset-item>
-        <a-asset-item id="obj3" src="model/iotQ3.obj"></a-asset-item>
-        <a-asset-item id="mtl3" src="model/iotQ3.mtl"></a-asset-item>
-        <a-asset-item id="obj4" src="model/iotQ4.obj"></a-asset-item>
-        <a-asset-item id="mtl4" src="model/iotQ4.mtl"></a-asset-item>
-        <a-asset-item id="obj5" src="model/iotQ5.obj"></a-asset-item>
-        <a-asset-item id="mtl5" src="model/iotQ5.mtl"></a-asset-item> -->
-      </a-assets>
-      <!-- generate .patt by https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
-      <a-marker
-        type="pattern"
-        url="marker/pattern-marker1.patt"
-        emitevents="true"
-        id="marker1"
-      >
-        <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
-        <a-entity
-          gltf-model="#gltf1"
-          -obj-model="obj: #obj1; mtl: #mtl1"
-          scale="0.02 0.02 0.02"
-          position="0 0 0"
-          class="clickable"
-          gesture-handler
-        >
-        </a-entity>
-      </a-marker>
-      <a-marker
-        type="pattern"
-        url="marker/pattern-marker2.patt"
-        emitevents="true"
-        id="marker2"
-      >
-        <a-entity
-          gltf-model="#gltf2"
-          -obj-model="obj: #obj2; mtl: #mtl2"
-          scale="0.02 0.02 0.02"
-          position="0 0 0"
-          class="clickable"
-          gesture-handler
-        >
-        </a-entity>
-      </a-marker>
-      <a-marker
-        type="pattern"
-        url="marker/pattern-marker3.patt"
-        emitevents="true"
-        id="marker3"
-      >
-        <a-entity
-          gltf-model="#gltf3"
-          -obj-model="obj: #obj3; mtl: #mtl3"
-          scale="0.02 0.02 0.02"
-          position="0 0 0"
-          class="clickable"
-          gesture-handler
-        >
-        </a-entity>
-      </a-marker>
-      <a-marker
-        type="pattern"
-        url="marker/pattern-marker4.patt"
-        emitevents="true"
-        id="marker4"
-      >
-        <a-entity
-          gltf-model="#gltf4"
-          -obj-model="obj: #obj4; mtl: #mtl4"
-          scale="0.02 0.02 0.02"
-          position="0 0 0"
-          class="clickable"
-          gesture-handler
-        >
-        </a-entity>
-      </a-marker>
-      <a-marker
-        type="pattern"
-        url="marker/pattern-marker5.patt"
-        emitevents="true"
-        id="marker5"
-      >
-        <a-entity
-          gltf-model="#gltf5"
-          -obj-model="obj: #obj5; mtl: #mtl5"
-          scale="0.02 0.02 0.02"
-          position="0 0 0"
-          class="clickable"
-          gesture-handler
-        >
-        </a-entity>
-      </a-marker>
-      <!-- static camera that moves according to the device movements -->
-      <a-entity camera></a-entity>
-    </a-scene>
-    
-    <div class="row">
+  <div class="container">    
+    <div class="row" style="z-index: 9999;">
       <div class="col-12 upper" style="top: 0; left: 10rem; height: 5rem;">
         <button type="button" class="btn btn-danger btn-lg" id="toggle" style="display: none;">圖片</button>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row scrollable-exam-panel">
       <div class="col-12 exam" id="exam1">
         <input type="hidden" name="answer" value="2, 4">
         <div class="question">
@@ -317,7 +204,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="z-index: 9999;">
       <div class="col-12 lower">
         <button type="button" class="btn btn-light" id="commit" style="display: none;" disabled>未完成</button>
       </div>
@@ -376,7 +263,119 @@
         </form>
       </div>
     </div>
-
   </div>
+
+  <!-- a-frame scene -->
+  <a-scene
+    arjs
+    embedded
+    renderer="logarithmicDepthBuffer: true;"
+    vr-mode-ui="enabled: false"
+    gesture-detector
+    style="z-index: 0;"
+  >
+    <a-assets>
+      <!-- glb/gltf could be converted from mtl+obj file by obj2gltf or 3D Viewer (Windows) -->
+      <a-asset-item id="gltf1" src="model/iotQ1.gltf"></a-asset-item>
+      <a-asset-item id="gltf2" src="model/iotQ2.gltf"></a-asset-item>
+      <a-asset-item id="gltf3" src="model/iotQ3.gltf"></a-asset-item>
+      <a-asset-item id="gltf4" src="model/iotQ4.gltf"></a-asset-item>
+      <a-asset-item id="gltf5" src="model/iotQ5.gltf"></a-asset-item>
+      <!-- <a-asset-item id="obj1" src="model/iotQ1.obj"></a-asset-item>
+      <a-asset-item id="mtl1" src="model/iotQ1.mtl"></a-asset-item>
+      <a-asset-item id="obj2" src="model/iotQ2.obj"></a-asset-item>
+      <a-asset-item id="mtl2" src="model/iotQ2.mtl"></a-asset-item>
+      <a-asset-item id="obj3" src="model/iotQ3.obj"></a-asset-item>
+      <a-asset-item id="mtl3" src="model/iotQ3.mtl"></a-asset-item>
+      <a-asset-item id="obj4" src="model/iotQ4.obj"></a-asset-item>
+      <a-asset-item id="mtl4" src="model/iotQ4.mtl"></a-asset-item>
+      <a-asset-item id="obj5" src="model/iotQ5.obj"></a-asset-item>
+      <a-asset-item id="mtl5" src="model/iotQ5.mtl"></a-asset-item> -->
+    </a-assets>
+    <!-- generate .patt by https://ar-js-org.github.io/AR.js/three.js/examples/marker-training/examples/generator.html-->
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker1.patt"
+      emitevents="true"
+      id="marker1"
+    >
+      <!-- as a child of the a-marker entity, you can define the content to show. here's a GLTF model entity -->
+      <a-entity
+        gltf-model="#gltf1"
+        -obj-model="obj: #obj1; mtl: #mtl1"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker2.patt"
+      emitevents="true"
+      id="marker2"
+    >
+      <a-entity
+        gltf-model="#gltf2"
+        -obj-model="obj: #obj2; mtl: #mtl2"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker3.patt"
+      emitevents="true"
+      id="marker3"
+    >
+      <a-entity
+        gltf-model="#gltf3"
+        -obj-model="obj: #obj3; mtl: #mtl3"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker4.patt"
+      emitevents="true"
+      id="marker4"
+    >
+      <a-entity
+        gltf-model="#gltf4"
+        -obj-model="obj: #obj4; mtl: #mtl4"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
+    </a-marker>
+    <a-marker
+      type="pattern"
+      url="marker/pattern-marker5.patt"
+      emitevents="true"
+      id="marker5"
+    >
+      <a-entity
+        gltf-model="#gltf5"
+        -obj-model="obj: #obj5; mtl: #mtl5"
+        scale="0.02 0.02 0.02"
+        position="0 0 0"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
+    </a-marker>
+    <!-- static camera that moves according to the device movements -->
+    <a-entity camera></a-entity>
+  </a-scene>
 
 </body>
