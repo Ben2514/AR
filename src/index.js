@@ -77,6 +77,10 @@ window.addEventListener("camera-init", () => {
 
   let options = document.querySelectorAll("input[type=checkbox][name=options]");
   options.forEach((option) => {
+    let optionI = option.nextElementSibling;
+    let value = [...option.parentElement.parentElement.children].indexOf(option.parentElement) + 1;
+    optionI.innerHTML += `&nbsp;(${String.fromCharCode(65 + value - 1)})`;
+
     option.addEventListener("change", (event) => {
       let input = event.target;
       let label = input.parentElement;
