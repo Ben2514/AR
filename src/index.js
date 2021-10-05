@@ -163,7 +163,7 @@ window.addEventListener("camera-init", () => {
     for (let i = 0; i < numQ; i++)
       result.innerHTML += tr(i);
 
-    // 需修改!!!
+    // 需修改!!! 在此行之後toReturn才會是完整的
     // 將json格式的toReturn傳出，即可得到所有紀錄
 
     finisher.show();
