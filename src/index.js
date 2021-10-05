@@ -146,6 +146,7 @@ window.addEventListener("camera-init", () => {
 (function () {
   "use strict"
 
+  let toReturn = {}; // 紀錄姓名、ID和作答紀錄(包含學生填寫答案和正確答案)
   let commit = document.querySelector("#commit");
   commit.addEventListener("click", function () {
     if (commit.disabled) return;
@@ -155,17 +156,25 @@ window.addEventListener("camera-init", () => {
 
     document.querySelector("#finisher_name").innerHTML = studentName;
     document.querySelector("#finisher_id").innerHTML = studentID;
+    toReturn["name"] = studentName;
+    toReturn["id"] = studentID;
+    toReturn["ans"] = [];
 
     for (let i = 0; i < numQ; i++)
       result.innerHTML += tr(i);
+
+    // 需修改!!!
+    // 將json格式的toReturn傳出，即可得到所有紀錄
 
     finisher.show();
   });
 
   function tr (index) {
-    let answer = record[index];
     let correctStr = document.querySelector(`#exam${index + 1} > input[name=answer]`).value;
     let correct = correctStr.split(',').map((element) => parseInt(element));
+    let answer = record[index];
+
+    toReturn["ans"].push({"correct": correct, "answer": answer});
 
     let left = `<td>
       ${arrayEqual(answer, correct) ? '<i class="fas fa-check" style="width: 1.5rem; color: green"></i>' : 
