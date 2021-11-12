@@ -30,33 +30,33 @@
     <div class="row scrollable-exam-panel">
       <!-- 需修改!!! 以下為題目內容(包含問題及選項)；若需增減選項數量，可直接複製或刪除div class="col-12 exam"的HTML Tag，並修改內部內容 -->
       <div class="col-12 exam" id="exam1"> <!-- 需修改!!! 例：第1題則id則id="exam1"；第2題則id則id="exam2"，以此類推 -->
-        <input type="hidden" name="answer" value="1, 3, 4"> <!-- 需修改!!! 此為該題的正確答案(1: A、2: B、3: C，以此類推) -->
+        <input type="hidden" name="answer" value="2"> <!-- 需修改!!! 此為該題的正確答案(1: A、2: B、3: C，以此類推) -->
         <div class="question">
           <h5>1.	在細胞進有絲分裂時，何者會形成紡錘體(SPINDLE APPARATUS)結構，促進細胞分裂時結構穩定？</h5> <!-- 需修改!!! 此為該題的問題描述(注意題號) -->
-          <small style="color: red;">※此題是複選題</small> <!-- 需修改!!! 若該題為複選則使用此行 -->
-          <!-- <small style="color: red;"></small> --> <!-- 需修改!!! 若該題為單選則使用此行 -->
+          <!-- <small style="color: red;">※此題是複選題</small> --> <!-- 需修改!!! 若該題為複選則使用此行 -->
+          <small style="color: red;"></small> <!-- 需修改!!! 若該題為單選則使用此行 -->
         </div>
         
         <div class="answer" role="group" aria-label="Basic checkbox toggle button group">
           <!-- 需修改!!! 以下為選項內容，無須標明選項代號(注意順序)；若需增減選項數量，可直接複製或刪除label的HTML Tag -->
           <label class="btn btn-secondary btn-sm option">
             <input type="checkbox" class="btn-check" name="options" autocomplete="off">
-            <i class="far fa-square"></i>B：合成核酸的中心 <!-- 需修改!!! 此為A選項描述 -->
+            <i class="far fa-square"></i>A <!-- 需修改!!! 此為A選項描述 -->
           </label>
 
           <label class="btn btn-secondary btn-sm option">
             <input type="checkbox" class="btn-check" name="options" autocomplete="off">
-            <i class="far fa-square"></i>F：合成蛋白質的場所 <!-- 需修改!!! 此為B選項描述 -->
+            <i class="far fa-square"></i>B <!-- 需修改!!! 此為B選項描述 -->
           </label>
 
           <label class="btn btn-secondary btn-sm option">
             <input type="checkbox" class="btn-check" name="options" autocomplete="off">
-            <i class="far fa-square"></i>C：提供細胞所需的能量 <!-- 需修改!!! 此為C選項描述 -->
+            <i class="far fa-square"></i>C <!-- 需修改!!! 此為C選項描述 -->
           </label>
           
           <label class="btn btn-secondary btn-sm option">
             <input type="checkbox" class="btn-check" name="options" autocomplete="off">
-            <i class="far fa-square"></i>A：控制物質進出細胞 <!-- 需修改!!! 此為D選項描述 -->
+            <i class="far fa-square"></i>以上皆是 <!-- 需修改!!! 此為D選項描述 -->
           </label>
         </div>
       </div>
@@ -135,7 +135,7 @@
     <a-assets>
       <!-- 需修改!!! 以下為模型檔案，由於ar.js直接顯示obj+mtl似乎有問題，故請先合併轉換為gltf或是glb檔案
       轉換gltf/glb可以使用obj2gltf套件或Windows的3D Viewer -->
-      <a-asset-item id="gltf1" src="model/1-2.3D-0830lowmesh.gltf"></a-asset-item> <!-- 需修改!!! id請依據模型對應題號修改，例：第1題為gltf1；第2題為gltf2
+      <a-asset-item id="gltf1" src="model/To_blender_5-2-210830lowmesh.gltf"></a-asset-item> <!-- 需修改!!! id請依據模型對應題號修改，例：第1題為gltf1；第2題為gltf2
         src則為模型路徑所在，目前統一放在model資料夾 -->
       <!-- 以下為obj+mtl檔案的格式，如有需要亦可試試看 -->
       <!-- <a-asset-item id="obj1" src="model/1-2.3D-0830lowmesh.obj"></a-asset-item>
